@@ -1,23 +1,21 @@
-from kindness.friendly import greeter
-from kindness.friendly.greetingreader import GreetingReader
+from greeting import greeter, filegreeter, jsongreeter
+
+greeter = greeter.Greeter()
+file_greeter = filegreeter.FileGreeter("default_greeting.txt")
+json_greeter = jsongreeter.JsonGreeter("greetings.json")
 
 greetings = [
-    greeter.say_hello("Craig", "Blimey guv, absolute pleasure to meet your aquaintance"),
-    greeter.say_hello("Nick"),
-    greeter.say_hello("Bob"),
-    greeter.say_hello("Geoff S", "Yo"),
-    greeter.say_hello_from_file("Barry Scott")
+    greeter.greet("Barry Scott"),
+    file_greeter.greet("James Jarrold"),
+    json_greeter.greet("Harry Harbottle")
 ]
 
 print(greetings)
 
-greetings.append(greeter.say_hello("barry"))
+greetings.append(greeter.greet("barry"))
 
 print(greetings)
 
 print(greetings.__len__(), "greetings on the list")
 
 print(__name__)
-
-gr = GreetingReader('greetings.json')
-print(gr.get_random())
